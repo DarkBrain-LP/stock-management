@@ -315,27 +315,24 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel3" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
-                                          <Component id="jLabel5" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jLabel8" min="-2" pref="141" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                                              <Component id="jDayChooser1" pref="422" max="32767" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jMonthChooser1" min="-2" pref="98" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jYearChooser1" min="-2" pref="53" max="-2" attributes="0"/>
-                                          </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel8" min="-2" pref="141" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel3" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                                              <Component id="jLabel5" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                                              <Component id="jLabel4" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="434" max="32767" attributes="0"/>
                               <Component id="submit" min="-2" pref="172" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="243" max="-2" attributes="0"/>
                           </Group>
@@ -376,19 +373,11 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel8" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                              <Component id="jMonthChooser1" min="-2" pref="83" max="-2" attributes="0"/>
-                                              <Component id="jYearChooser1" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace pref="242" max="32767" attributes="0"/>
+                                      <Component id="jLabel8" min="-2" pref="31" max="-2" attributes="0"/>
+                                      <EmptySpace pref="294" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace pref="23" max="32767" attributes="0"/>
-                                      <Component id="jDayChooser1" min="-2" pref="157" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace pref="186" max="32767" attributes="0"/>
                                       <Component id="submit" min="-2" pref="59" max="-2" attributes="0"/>
                                       <EmptySpace pref="92" max="32767" attributes="0"/>
                                   </Group>
@@ -540,12 +529,6 @@
                         </DimensionLayout>
                       </Layout>
                     </Container>
-                    <Component class="com.toedter.calendar.JYearChooser" name="jYearChooser1">
-                    </Component>
-                    <Component class="com.toedter.calendar.JMonthChooser" name="jMonthChooser1">
-                    </Component>
-                    <Component class="com.toedter.calendar.JDayChooser" name="jDayChooser1">
-                    </Component>
                     <Component class="javax.swing.JButton" name="submit">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
