@@ -11,6 +11,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,7 +78,32 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public List<Article> listArticle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        ArrayList<Article> liste = new ArrayList<>();
+        
+        try {
+            con = DriverManager.getConnection(connector.concat(sgbd).concat(adresse).concat(bd), 
+                    user, password);
+            
+            pst = con.prepareStatement("SELECT * FROM article");
+            rset = pst.executeQuery();
+            
+            while(rset.next()){
+                String code = rset.getString("code_article");
+                String libel = rset.getString("libel_article");
+                double prix = rset.getDouble("prix_article");
+                int qte = rset.getInt("quantite_stock");
+                Date date = rset.getDate("date_creation_article");
+                
+                Article art = new Article(code, libel, prix, qte, date);
+                liste.add(art);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ArticleDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return liste;
     }
     
 }

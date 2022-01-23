@@ -15,4 +15,5 @@ public interface EnregistrementControler {
     public boolean controlPrixArticle(String prix);
     public boolean controlQte(String qte);
     public boolean controlDateCreation(String date);
+    public double getPrixArticle(String prix);
 }

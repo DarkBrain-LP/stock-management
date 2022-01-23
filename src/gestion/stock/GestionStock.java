@@ -5,6 +5,7 @@
  */
 package gestion.stock;
 
+import controlers.EnregistrementControlerImpl;
 import dab.ArticleDaoImpl;
 import entity.Article;
 import java.text.ParseException;
@@ -23,15 +24,35 @@ public class GestionStock {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        try {
-            // TODO code application logic here
-            SimpleDateFormat sfd = new SimpleDateFormat("yyyy-mm-dd");
-            Date date = sfd.parse("2022-01-22");
-            Article art = new Article("Len720", "LENOVO 720", 420000, 1, date);
-            System.out.println(new ArticleDaoImpl().createArticle(art));
-        } catch (ParseException ex) {
-            Logger.getLogger(GestionStock.class.getName()).log(Level.SEVERE, null, ex);
+        
+        // TODO code application logic here
+        /*SimpleDateFormat sfd = new SimpleDateFormat("yyyy-mm-dd");
+        Date date = sfd.parse("2022-20-22");
+        Article art = new Article("Len720", "LENOVO 720", 420000, 1, date);
+        System.out.println(new ArticleDaoImpl().createArticle(art));
+        */
+        //System.out.println((new EnregistrementControlerImpl()).controlDateCreation("1520"));
+        
+        //System.out.println(controlQte(""));
+        
+        for(Article art : new ArticleDaoImpl().listArticle()){
+            System.out.println("art = " + art.getCodeArticle());
         }
+        
+    }
+        public static boolean controlQte(String qte) {
+        boolean valide = false;
+        
+        try{
+            Integer.parseInt(qte);
+            
+            if( !qte.isEmpty() )
+                valide = true;
+        } catch(NumberFormatException e){
+            System.out.println("Impossible de convertir la quantité en entier");
+        }
+        
+        return valide;
     }
     
 }

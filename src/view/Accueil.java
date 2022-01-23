@@ -5,6 +5,20 @@
  */
 package view;
 
+import controlers.EnregistrementControlerImpl;
+import dab.ArticleDaoImpl;
+import entity.Article;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author M@nU_LP
@@ -17,6 +31,9 @@ public class Accueil extends javax.swing.JFrame {
     public Accueil() {
         initComponents();
     }
+    
+    EnregistrementControlerImpl verifications;
+    ArticleDaoImpl adi ;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,21 +66,19 @@ public class Accueil extends javax.swing.JFrame {
         codeArticleField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         libelArticleField = new javax.swing.JTextField();
-        prixArticleField = new javax.swing.JTextField();
+        dateCreationField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        qteStockField = new javax.swing.JPasswordField();
         jPanel7 = new javax.swing.JPanel();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
-        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
-        jDayChooser1 = new com.toedter.calendar.JDayChooser();
         submit = new javax.swing.JButton();
+        prixArticleField1 = new javax.swing.JTextField();
+        qteStockField = new javax.swing.JTextField();
         paneModSup = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         paneArticleStock = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableArticles = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         paneRecherche = new javax.swing.JPanel();
         paneNbTotalArticle = new javax.swing.JPanel();
@@ -265,9 +280,15 @@ public class Accueil extends javax.swing.JFrame {
             }
         });
 
-        prixArticleField.setBackground(new java.awt.Color(0, 0, 51));
-        prixArticleField.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        prixArticleField.setForeground(new java.awt.Color(255, 255, 255));
+        dateCreationField.setBackground(new java.awt.Color(0, 0, 51));
+        dateCreationField.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        dateCreationField.setForeground(new java.awt.Color(255, 255, 255));
+        dateCreationField.setText("aaaa-mm-jj");
+        dateCreationField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dateCreationFieldMouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -280,9 +301,6 @@ public class Accueil extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Date De Création");
-
-        qteStockField.setBackground(new java.awt.Color(0, 0, 51));
-        qteStockField.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -305,6 +323,26 @@ public class Accueil extends javax.swing.JFrame {
             }
         });
 
+        prixArticleField1.setBackground(new java.awt.Color(0, 0, 51));
+        prixArticleField1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        prixArticleField1.setForeground(new java.awt.Color(255, 255, 255));
+        prixArticleField1.setText("Elle ne doit etre ni vide, ni nulle, ni négative");
+        prixArticleField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                prixArticleField1MouseClicked(evt);
+            }
+        });
+
+        qteStockField.setBackground(new java.awt.Color(0, 0, 51));
+        qteStockField.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        qteStockField.setForeground(new java.awt.Color(255, 255, 255));
+        qteStockField.setText("Elle ne doit etre ni vide, ni nulle, ni négative");
+        qteStockField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                qteStockFieldMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -313,34 +351,24 @@ public class Accueil extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(qteStockField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(codeArticleField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(libelArticleField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(prixArticleField, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(87, 87, 87)
-                                .addComponent(jDayChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(codeArticleField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(libelArticleField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dateCreationField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(prixArticleField1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(qteStockField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(243, 243, 243))
+                .addGap(245, 245, 245))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,29 +387,21 @@ public class Accueil extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(prixArticleField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(prixArticleField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(127, 127, 127)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(qteStockField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jYearChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(242, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                        .addComponent(jDayChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(92, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateCreationField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(88, 88, 88)
+                .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout paneEnregistrerLayout = new javax.swing.GroupLayout(paneEnregistrer);
@@ -422,18 +442,24 @@ public class Accueil extends javax.swing.JFrame {
 
         paneArticleStock.setBackground(new java.awt.Color(204, 204, 204));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableArticles.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tableArticles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Code", "Libellé", "Prix", "Quantité", "Date de Création"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableArticles);
 
         jLabel9.setText("Articles en stock");
 
@@ -456,8 +482,8 @@ public class Accueil extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
         );
 
         panePresentation.add(paneArticleStock, "card7");
@@ -555,9 +581,83 @@ public class Accueil extends javax.swing.JFrame {
         panePresentation.add(paneArticleStock);
         panePresentation.repaint();
         panePresentation.revalidate();
+        
+        for(Article art : new ArticleDaoImpl().listArticle()){
+            String[] ligne = {art.getCodeArticle(), art.getLibelArticle(),
+                            String.valueOf(art.getPrixArticle()), 
+                            String.valueOf(art.getQuantiteArticle()),
+                            String.valueOf(art.getDateCreationArticle())
+            };
+            
+            DefaultTableModel modelTable = (DefaultTableModel)tableArticles.getModel();
+            modelTable.addRow(ligne);
+        }
     }//GEN-LAST:event_btnArticleStockActionPerformed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
+        
+        verifications = new EnregistrementControlerImpl();
+        
+        String codeArticle = verifications.getCodeArticle(codeArticleField.getText());
+        String libelArticle = verifications.getLibelArticle(libelArticleField.getText());
+        double prixArticle = verifications.getPrixArticle(prixArticleField1.getText());
+        System.out.println("prixArticle = " + prixArticle);
+        int quantiteArticle = verifications.getQte(qteStockField.getText());
+        System.out.println("quantiteArticle = " + quantiteArticle);
+        Date dateCreationArticle = null;
+        
+        try {
+            dateCreationArticle = verifications.getDateCreation(dateCreationField.getText());
+        } catch (ParseException ex) {
+            
+        }
+        
+        // Vérifions si un des champs n'a pas été rempli et informons l'utilisateur
+        // Pour cela, nous allons définir une variable qui contiendra le message qu'on
+        // lui affichera
+        String retourErreur = "";
+        
+        // On passe aux vérifications
+        if(codeArticle.isEmpty()){
+            retourErreur += "Le code de l'article ne peut pas être vide \n";
+        }
+        if(libelArticle.isEmpty()){
+            retourErreur += "Le libellé de l'article ne peut pas etre vide \n";
+        }
+        switch((int)prixArticle){
+            case -1: 
+                retourErreur += "Le prix doit être positif \n";
+                break;
+            case 0 :
+                retourErreur += "Le prix doit etre renseigné \n";
+        }
+        switch(quantiteArticle){
+            case -1: 
+                retourErreur += "La quantité ne doit pas être négative, ni nulle \n";
+                break;
+            case 0 :
+                retourErreur += "La quantité doit être renseigné \n";
+        }
+        
+        if(dateCreationArticle == null){
+            // On récupère la date du jour
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+            Date now = new Date(); 
+            retourErreur += "Veuillez entrer une date valide : Elle ne doit pas être vide et ne doit pas dépasser " + java.time.LocalDate.now() + "\n";
+        }
+        
+        if( (!codeArticle.isEmpty()) && (!libelArticle.isEmpty()) && (prixArticle != 0)
+                && (quantiteArticle != 0) && (dateCreationArticle != null)){
+            
+            Article article = new Article(codeArticle, libelArticle, prixArticle, quantiteArticle, dateCreationArticle);
+            adi = new ArticleDaoImpl();
+            
+            if(adi.createArticle(article)){
+                JOptionPane.showMessageDialog(null, "Article enrégistré avec succes");
+            } 
+        } else{
+                JOptionPane.showMessageDialog(null, retourErreur);
+            }
         
     }//GEN-LAST:event_submitActionPerformed
 
@@ -599,6 +699,18 @@ public class Accueil extends javax.swing.JFrame {
         panePresentation.repaint();
         panePresentation.revalidate();
     }//GEN-LAST:event_btnApprovisionnerActionPerformed
+
+    private void prixArticleField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prixArticleField1MouseClicked
+        prixArticleField1.setText("");
+    }//GEN-LAST:event_prixArticleField1MouseClicked
+
+    private void qteStockFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_qteStockFieldMouseClicked
+        qteStockField.setText("");
+    }//GEN-LAST:event_qteStockFieldMouseClicked
+
+    private void dateCreationFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dateCreationFieldMouseClicked
+        dateCreationField.setText("");
+    }//GEN-LAST:event_dateCreationFieldMouseClicked
 
     /**
      * @param args the command line arguments
@@ -645,7 +757,7 @@ public class Accueil extends javax.swing.JFrame {
     private javax.swing.JButton btnSousSeuil;
     private javax.swing.JButton btnVendreArticle;
     private javax.swing.JTextField codeArticleField;
-    private com.toedter.calendar.JDayChooser jDayChooser1;
+    private javax.swing.JTextField dateCreationField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -655,7 +767,6 @@ public class Accueil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -664,8 +775,6 @@ public class Accueil extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private com.toedter.calendar.JYearChooser jYearChooser1;
     private javax.swing.JTextField libelArticleField;
     private javax.swing.JPanel paneApprovisionner;
     private javax.swing.JPanel paneArticleStock;
@@ -676,8 +785,9 @@ public class Accueil extends javax.swing.JFrame {
     private javax.swing.JPanel paneRecherche;
     private javax.swing.JPanel paneSousSeuil;
     private javax.swing.JPanel paneVendreArticle;
-    private javax.swing.JTextField prixArticleField;
-    private javax.swing.JPasswordField qteStockField;
+    private javax.swing.JTextField prixArticleField1;
+    private javax.swing.JTextField qteStockField;
     private javax.swing.JButton submit;
+    private javax.swing.JTable tableArticles;
     // End of variables declaration//GEN-END:variables
 }
