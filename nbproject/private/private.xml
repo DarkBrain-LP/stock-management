@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/workSpace/gestion%20stock/src/view/Accueil.java</file>
-            <file>file:/C:/workSpace/gestion%20stock/src/dab/ArticleDao.java</file>
-            <file>file:/C:/workSpace/gestion%20stock/src/dab/ArticleDaoImpl.java</file>
-            <file>file:/C:/workSpace/gestion%20stock/src/gestion/stock/GestionStock.java</file>
-            <file>file:/C:/workSpace/gestion%20stock/src/entity/Article.java</file>
+            <file>file:/D:/NetBeansProjects/gestion-stock/src/view/LoginV.java</file>
+            <file>file:/D:/NetBeansProjects/gestion-stock/src/dab/ArticleDaoImpl.java</file>
+            <file>file:/D:/NetBeansProjects/gestion-stock/src/dab/Requete.java</file>
+            <file>file:/D:/NetBeansProjects/gestion-stock/src/view/CreerCompte.java</file>
+            <file>file:/D:/NetBeansProjects/gestion-stock/src/view/Accueil.java</file>
+            <file>file:/D:/NetBeansProjects/gestion-stock/src/controlers/Login.java</file>
+            <file>file:/D:/NetBeansProjects/gestion-stock/src/controlers/EnregistrementControler.java</file>
         </group>
     </open-files>
 </project-private>
