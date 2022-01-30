@@ -34,9 +34,12 @@ public class GestionStock {
         //System.out.println((new EnregistrementControlerImpl()).controlDateCreation("1520"));
         
         //System.out.println(controlQte(""));
-        
-        for(Article art : new ArticleDaoImpl().listArticle()){
-            System.out.println("art = " + art.getCodeArticle());
+        Article arti = new ArticleDaoImpl().getArticleByCode("111");
+        System.out.println("art = " + arti.getCodeArticle() + " " + arti.getLibelArticle() + " " + arti.getPrixArticle() + " "
+                                + arti.getQuantiteArticle() + " " + arti.getDateCreationArticle());
+        for(Article art : new ArticleDaoImpl().rechercher("6", 6)){
+            System.out.println("art = " + art.getCodeArticle() + " " + art.getLibelArticle() + " " + art.getPrixArticle() + " "
+                                + art.getQuantiteArticle() + " " + art.getDateCreationArticle());
         }
         
     }

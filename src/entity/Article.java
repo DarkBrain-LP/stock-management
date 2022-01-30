@@ -19,7 +19,9 @@ public class Article {
     private double prixArticle;
     private int quantiteArticle;
     private Date dateCreationArticle;
-
+    
+    public Article(){}
+    
     public Article(String codeArticle, String libelArticle, double prixArticle, int quantiteArticle, Date dateCreationArticle) {
         this.codeArticle = codeArticle;
         this.libelArticle = libelArticle;

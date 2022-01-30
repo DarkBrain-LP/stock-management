@@ -14,8 +14,14 @@ import java.util.List;
  */
 public interface ArticleDao {
     public boolean createArticle(Article article);
-    public Article getArticleById(int id);
+    public Article getArticleByCode(String code);
     public boolean deleteArticle(int id);
-    public Article updateArticle(Article article);
+    public boolean updateArticle(Article ancien, Article nouveau);
     public List<Article> listArticle();
+    public int nombreTotalArticle();
+    public List<Article> rechercher(String element, int... cond );
+    /*public List<Article> rechercherCode(String element);
+    public List<Article> rechercherLibel(String element);
+    public List<Article> rechercherQuantite(String element);
+    */
 }
