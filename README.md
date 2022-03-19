@@ -1,4 +1,4 @@
-# gestion-stock
+# stock-management
 # A stock management application made in java
 ## To use this app, you'll need a database
 ## I've used mysql and jdbc connector
